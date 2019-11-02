@@ -1,0 +1,17 @@
+{
+  "namespace": "io.confluent.developer",
+  "type": "record",
+  "name": "Email",
+  "fields": [
+    {
+      "name": "Recipient",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "Content",
+	  "type": "string",
+      "avro.java.string": "String"
+    }
+  ]
+}

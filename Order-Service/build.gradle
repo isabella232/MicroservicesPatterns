@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+}
+
+/**
+ * dependencies {
+ *  api 'commons-httpclient:commons-httpclient:3.1'
+ *  implementation 'org.apache.commons:commons-lang3:3.5'
+ * }
+ * Dependencies appearing in the api configurations will be transitively exposed to consumers 
+ * of the library, and as such will appear on the compile classpath of consumers.
+ *
+ * Dependencies found in the implementation configuration will, on the other hand, 
+ * not be exposed to consumers, and therefore not leak into the consumers' compile classpath. 
+ * This comes with several benefits:
+ */
+ 
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//Avro Dependency
+	implementation 'org.apache.avro:avro:1.9.1'
+	//Avro SerDes
+	//Need to add new Repo url for this. Check the Parent Repo
+	implementation 'io.confluent:kafka-avro-serializer:5.2.2'
+	// Schema Registry client
+	implementation 'io.confluent:kafka-schema-registry-client:5.2.1'
+}
+
+//For Generating Avro Schema
+apply plugin: "com.commercehub.gradle.plugin.avro"

@@ -1,0 +1,51 @@
+/**
+ * A plugin is simply any class that implements the Plugin interface. 
+ * Gradle provides the core plugins (e.g. JavaPlugin) as part of its 
+ * distribution which means they are automatically resolved. 
+ * However, non-core binary plugins need to be resolved before they can be applied. 
+ * This can be achieved in a number of ways:
+ * BuildScipt is one way to do that.
+ * https://docs.gradle.org/current/userguide/plugins.html#plugins
+ */
+buildscript {
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.17.0"
+    }
+}
+
+plugins {
+ 	id 'com.gradle.build-scan' version '2.4.2'
+	id 'java'
+}
+
+group = 'org.sasanlabs'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+jar {
+	enabled = true
+}
+
+subprojects {
+	apply plugin: 'java'
+	repositories {
+	 	mavenCentral()
+	    gradlePluginPortal()
+	    //For Confluent Avro Package
+	    maven {
+	    	url "http://packages.confluent.io/maven"
+	    }
+	    
+	    maven {
+	    	url "https://repo.spring.io/plugins-release"
+	    }
+	    
+	    maven {
+	    	url "https://repo.spring.io/libs-release"
+	    }
+	}
+}
+
+dependencies {
+ 	implementation 'com.commercehub.gradle.plugin:gradle-avro-plugin:0.17.0'
+}
